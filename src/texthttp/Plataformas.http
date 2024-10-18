@@ -1,0 +1,15 @@
+@url = https://8080-luisdulovec-gamessw2202-0ypfxj4g953.ws-us116.gitpod.io
+
+GET {{url}}/plataformas
+
+###
+
+POST {{url}}/plataformas
+Content-TYpe: application/json
+
+{
+    "nome": "Mobile"
+}
+
+###
+GET  {{url}}/platafomas/1
