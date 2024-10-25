@@ -1,5 +1,7 @@
 package application.service;
 
+import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +27,7 @@ private PlataformaRepository plataformaRepo;
     }
 
     public PlataformaDTO getOne(long id) {
-        Optional<Plataforma> resultado = plataformaRepo.findById(id);
+        Optional <Plataforma> resultado = plataformaRepo.findById(id);
         if(resultado.isEmpty()){
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "plataforma Não Encontrada"
