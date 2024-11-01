@@ -11,9 +11,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter; 
+import application.record.JogoDTO;
 
 @Entity
 @Table(name = "jogo")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Jogo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +32,11 @@ public class Jogo {
     @JoinTable(name = "jogos_posuem_plataformas",
         joinColumns = @JoinColumn(name = "id_jogos"),
         inverseJoinColumns = @JoinColumn(name = "id_plataforma"))
-    private Set<Plataforma> plataforma;
+    private Set<Plataforma> plataformas;
+
+    public Jogo(JogoDTO jogo) {
+        this.id = jogo.id();
+        this.titulo = jogo.titulo();
+        this.plataformas = jogo.plataformas();
+    }
 }

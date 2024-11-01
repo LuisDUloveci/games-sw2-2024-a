@@ -1,0 +1,14 @@
+@url = https://8080-luisdulovec-gamessw2202-ep0khc1jcei.ws-us116.gitpod.io
+
+GET {{url}}/jogos
+
+###
+POST {{url}}/jogos
+Content-Type: application/json
+
+{
+    "titulo": "Borderlands 3",
+    "plataformas" : [
+        {"id": 2}
+    ]
+    }
