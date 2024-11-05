@@ -12,3 +12,17 @@ Content-Type: application/json
         {"id": 2}
     ]
     }
+
+###
+DELETE {{url}}/jogo/1
+
+###
+PUT {{url}}/jogo/1
+Content-Type: application/json
+
+{
+    "titulo": "Vampire Survivors - Alterado",
+    "plataforma": [
+        {"id": 1}
+    ]
+}

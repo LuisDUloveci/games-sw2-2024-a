@@ -1,7 +1,12 @@
 package application.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import application.model.Jogo;
 import application.record.JogoDTO;
@@ -25,5 +30,26 @@ public class JogoService {
         return new JogoDTO(jogoRepo.save(new Jogo(jogo)));
     }
 
+    public JogoDTO update(long id, JogoDTO jogo) {
+        Optional<Jogo> result = jogoRepo.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_EXTENDED, "Jogo não encontrado"
+            );
+        }
+        result.get().setPlataformas(jogo.plataformas());
+        result.get().setTitulo(jogo.titulo());
+
+        return new JogoDTO(jogoRepo.save(result.get()));
+    }
+
+    public void deleteById(Long id) {
+        if(!jogoRepo.existsById(id)) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Jogo Não Encontrado"
+            );
+        }
+        jogoRepo.deleteById(id);
+    }
     
 }
